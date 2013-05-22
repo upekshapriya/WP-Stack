@@ -69,7 +69,7 @@ namespace :db do
 	desc "Sets the database credentials (and other settings) in wp-config.php"
 	task :make_config do
 		set :staging_domain, '' if staging_domain.nil?
-		{:'%%WP_STAGING_DOMAIN%%' => staging_domain, :'%%WP_STAGE%%' => stage, :'%%DB_NAME%%' => wpdb[stage][:name], :'%%DB_USER%%' => wpdb[stage][:user], :'%%DB_PASSWORD%%' => wpdb[stage][:password], :'%%DB_HOST%%' => wpdb[stage][:host]}.each do |k,v|
+		{:'%%WP_STAGING_DOMAIN%%' => staging_domain, :'%%WP_STAGE%%' => stage, :'%%DB_NAME%%' => wpdb[stage][:name], :'%%DB_USER%%' => wpdb[stage][:user], :'%%DB_PASSWORD%%' => wpdb[stage][:password], :'%%DB_HOST%%' => wpdb[stage][:host], :'%%DOMAIN%%' => wpdb[stage][:domain]}.each do |k,v|
 			run "sed -i 's/#{k}/#{v}/' #{release_path}/wp-config.php", :roles => :web
 		end
 	end
