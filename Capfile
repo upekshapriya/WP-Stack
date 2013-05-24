@@ -4,7 +4,7 @@ load 'lib/misc'
 
 # Multistage
 set :stages, ['production', 'staging']
-set :default_stage, 'production'
+set :default_stage, 'staging'
 require 'capistrano/ext/multistage'
 
 load 'lib/tasks'
